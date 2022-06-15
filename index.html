@@ -1,0 +1,176 @@
+<html>
+    <head>
+        <title>Website for Taller_1 JS</title>
+        <meta charset="UTF-8" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/fd4fabe431.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="navbar">
+                <nav>
+                    <ul>
+                        <li><a onclick="showReg()">Registrar Proyecto</a></li>
+                        <li><a onclick="showList()">Listar Proyectos</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div id="alert_fail" class="alert show">
+                <span class="fas fa-exclamation-circle"></span>
+                <span class="msg">Warning: No se ha enviado los datos, complete todo el formulario!</span>
+                <span onclick="closeAlertFail()" class="close-btn">
+                    <span class="fas fa-times"></span>
+                </span>
+            </div>
+
+            <div id="alert_sucess" class="alert_sucess show">
+                <span class="fas fa-exclamation-circle"></span>
+                <span class="msg">Succes: Se han enviado los datos!</span>
+                <span onclick="closeAlertSucess()" class="close-btn">
+                    <span class="fas fa-times"></span>
+                </span>
+            </div>
+
+            <div class="card_form" id="reg_proyecto">
+                <div class="form-post">
+                    <div class="form-post__img">
+                        <img src="/media/project_img.png" alt="">
+                    </div>
+                    <div class="form-post__info">
+                        <form id="form">
+                            <div class="form">
+                                <h3 class="title_card">Registrar Proyecto</h3>
+                                <div class="grupo">
+                                    <input class="form_input" type="text" name="" id="name" required><span class="barra"></span>
+                                    <label for="">Nombre</label>
+                                </div>
+                                <div class="grupo">
+                                    <input class="form_input" type="number" name="" id="codigo" required><span class="barra"></span>
+                                    <label for="">Código</label>
+                                </div>
+                                <div class="grupo">
+                                    <input class="form_input" type="text" name="" id="descripcion" required><span class="barra"></span>
+                                    <label for="">Descripcion</label>
+                                </div>
+                                <div class="grupo">
+                                    <input class="form_input" type="date" id="date" name="" value="2022-05-30" required><span class="barra"></span>
+                                    <label for="">Fecha de inicio</label>
+                                </div>
+                                <div class="grupo">
+                                    <select class="input_value" name="" id="tipo" required>
+                                        <option class="option_s" value="Investigación" selected>Investigación</option>
+                                        <option class="option_s" value="Extensión">Extensión</option>
+                                    </select>
+                                    <span class="barra"></span>
+                                    <label for="">Tipo</label>
+                                </div>
+                                <button id="guardar" onclick="sendProject()" type="button">Enviar dato</button>
+                                <p class="warning" id="warnings"></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card_form" id="list_proyectos">
+                <div class="form-post">
+                    <div class="datatable-container">
+                        <div class="header-tools">
+                            <div class="tools">
+                                <ul>
+                                    <li>
+                                        <a>
+                                            <input type="checkbox" value="all">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="cta">
+                                            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="botonDelete">
+                                            <i class="fa-solid fa-trash-can fa-lg"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="search" style="display: flex;">
+                                <ul>
+                                    <li class="searh_icon">
+                                        <a onclick="restablecerProject()">
+                                            <i class="fa-solid fa-arrow-rotate-left fa-lg"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <input type="text" name="" id="searchP" class="search-input">
+                            </div>
+                        </div>
+                        <table class="datatable">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Nombre</th>
+                                    <th>Codigo</th>
+                                    <th>Descripcion</th>
+                                    <th>Fecha de inicio</th>
+                                    <th>Tipo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data_body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>     
+            </div>
+
+            <div class="modal-container">
+                <div class="modal modal-close">
+                    <p class="close">X</p>
+                    <div class="modal-textos">
+                        <form id="form">
+                            <div class="form">
+                                <h3 class="title_card">Registrar Proyecto</h3>
+                                <div class="grupo">
+                                    <input class="form_input" type="text" name="" id="nameUp" required><span class="barra"></span>
+                                    <label for="">Nombre</label>
+                                </div>
+                                <div class="grupo">
+                                    <input class="form_input" type="number" name="" id="codigoUp" required><span class="barra"></span>
+                                    <label for="">Código</label>
+                                </div>
+                                <div class="grupo">
+                                    <input class="form_input" type="text" name="" id="descripcionUp" required><span class="barra"></span>
+                                    <label for="">Descripcion</label>
+                                </div>
+                                <div class="grupo">
+                                    <input class="form_input" type="date" id="dateUp" name="" value="2022-05-30" required><span class="barra"></span>
+                                    <label for="">Fecha de inicio</label>
+                                </div>
+                                <div class="grupo">
+                                    <select class="input_value" name="" id="tipoUp" required>
+                                        <option class="option_s" value="Investigación" selected>Investigación</option>
+                                        <option class="option_s" value="Extensión">Extensión</option>
+                                    </select>
+                                    <span class="barra"></span>
+                                    <label for="">Tipo</label>
+                                </div>
+                                <button id="guardar" onclick="updataProject()" type="button">Actualizar Proyecto</button>
+                                <p class="warning" id="warnings"></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card_form">     
+            </div>
+        </div>
+
+        <script src="/js/script_logic.js"></script>
+        <script src="/js/script_show.js"></script>
+    </body>
+</html>
